@@ -27,6 +27,7 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       vue(),
+      //配置svg图片
       createSvgIconsPlugin({
         // Specify the icon folder to be cached
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],

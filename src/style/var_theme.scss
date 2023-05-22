@@ -2,6 +2,12 @@
 
 @mixin font_color {
     @include themeify {
-        color: themed( "font_color");
+        color: themed("font_color");
+    }
+}
+
+@mixin thumb_color {
+    @include themeify {
+        background-color: themed("thumb_color");
     }
 }

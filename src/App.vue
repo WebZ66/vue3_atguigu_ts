@@ -8,7 +8,7 @@
 import { ref, reactive, computed, onMounted, watch } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 //设置默认的主题
-document.documentElement.setAttribute('data-theme', 'light')
+document.documentElement.setAttribute('data-theme', 'dark')
 </script>
 
 <style scoped lang="scss"></style>

@@ -1,13 +1,43 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slider">hello,zds</div>
+    <div class="layout_slider">
+      <Logo></Logo>
+      <div class="scrollbar">
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
+          :background-color="menuBgColor"
+          :text-color="menuTextColor"
+          active-text-color="red"
+        >
+          <el-sub-menu index="1">
+            <template #title>
+              <SvgIcon
+                :style="{ 'margin-right': '5px' }"
+                :name="'setting'"
+              ></SvgIcon>
+              <span>Navigator One</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="1-3">item three</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
+        </el-menu>
+      </div>
+    </div>
     <!-- 顶部导航 -->
     <div class="layout_tabbar">
       <el-switch
         v-model="themeType"
         class="mt-2"
-        style="margin-left: 24px"
+        style="
+          margin-left: 24px;
+          --el-switch-on-color: #51189b;
+          --el-switch-off-color: #e9db1f;
+        "
         inline-prompt
         @change="changeThemeType"
         :active-icon="Moon"
@@ -20,8 +50,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { Moon, Sunrise } from '@element-plus/icons-vue'
+import Logo from './logo/index.vue'
+
 const themeType = ref<boolean>(true)
 const changeThemeType = () => {
   const html = document.querySelector('html')
@@ -32,7 +64,12 @@ const changeThemeType = () => {
     html?.setAttribute('data-theme', 'light')
   }
 }
-const change = () => {}
+const menuBgColor = computed(() => {
+  return themeType.value ? '#001529' : '#e8ebb9'
+})
+const menuTextColor = computed(() => {
+  return themeType.value ? '#fff' : '#000'
+})
 </script>
 <style scoped lang="scss">
 @import '@/style/theme.scss';
@@ -49,9 +86,13 @@ const change = () => {}
     transition: all 0.3s;
     .scrollbar {
       width: 100%;
-      height: calc(100vh - $base-menu-logo-height);
+      height: calc(100vh - 50px);
+      overflow-y: auto;
       .el-menu {
         border-right: none;
+      }
+      &::v-deep .el-menu-item-group__title {
+        padding: 0;
       }
     }
   }
@@ -63,6 +104,7 @@ const change = () => {}
     top: 0px;
     left: $base-menu-width;
     transition: all 0.3s;
+    background-color: red;
     &.fold {
       width: calc(100vw - $base-menu-min-width);
       left: $base-menu-min-width;

@@ -1,11 +1,13 @@
 $themes: (
     light: (
-        menu_back_ground: #2e86d8,
+        menu_back_ground: #e8ebb9,
         font_color: #000000,
+        thumb_color: #dde1a6,
     ),
     dark: (
         menu_back_ground: #001529,
         font_color: #fff,
+        thumb_color: #19057b00,
     ),
 );
 //遍历$themes变量，将子map升级为全局

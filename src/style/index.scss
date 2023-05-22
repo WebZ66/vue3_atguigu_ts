@@ -1,5 +1,19 @@
-@import './reset.scss';
-
+@import "./reset.scss";
+@import "./var_theme.scss";
 //设置scss全局变量
 
 $color: red;
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    @include thumb_color;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 8px;
+    border-radius: 10px;
+    @include thumb_color;
+}
