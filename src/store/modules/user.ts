@@ -7,7 +7,7 @@ import type { loginForm } from '@/api/type'
 let useUserStore = defineStore('User', {
   state: () => {
     return {
-      token: localStorage.getItem('TOKEN')
+      token: localStorage.getItem('TOKEN'),
     }
   },
   actions: {
@@ -15,11 +15,11 @@ let useUserStore = defineStore('User', {
     userLogin(url: string, loginForm: loginForm) {
       userLoginApi(url, loginForm).then((res: any) => {
         this.token = res[0].token
-        localStorage.setItem('TOKEN', this.token)
+        localStorage.setItem('TOKEN', this.token as string)
       })
-    }
+    },
   },
-  getters: {}
+  getters: {},
 })
 
 export default useUserStore

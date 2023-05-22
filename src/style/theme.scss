@@ -1,0 +1,30 @@
+$themes: (
+    light: (
+        menu_back_ground: #2e86d8,
+        font_color: #000000,
+    ),
+    dark: (
+        menu_back_ground: #001529,
+        font_color: #fff,
+    ),
+);
+//遍历$themes变量，将子map升级为全局
+@mixin themeify {
+    @each $theme-name, $theme-map in $themes {
+        $theme-map: $theme-map !global;
+        [data-theme="#{$theme-name}"] & {
+            @content;
+        }
+    }
+}
+
+//根据key获取对应的样式值
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}
+
+@mixin menu_back_ground {
+    @include themeify {
+        background-color: themed("menu_back_ground");
+    }
+}

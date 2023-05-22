@@ -1,0 +1,7 @@
+@import "./theme.scss";
+
+@mixin font_color {
+    @include themeify {
+        color: themed( "font_color");
+    }
+}
